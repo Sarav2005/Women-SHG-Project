@@ -25,6 +25,8 @@ class User(UserMixin, db.Model):
     age = db.Column(db.Integer)              
 
     join_date = db.Column(db.Date, default=date.today)
+    join_date = db.Column(db.Date, default=date.today)
+    email_verified = db.Column(db.Boolean, default=False) 
 
     savings = db.relationship("Savings", backref="user", lazy="dynamic")
     loans = db.relationship("Loan", backref="user", lazy="dynamic")
@@ -79,6 +81,14 @@ class User(UserMixin, db.Model):
         if score >= 60:
             return "bg-warning"
         return "bg-danger"
+    
+    def set_password(self, password):
+        from werkzeug.security import generate_password_hash
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        from werkzeug.security import check_password_hash
+        return check_password_hash(self.password_hash, password)
 
 
 class Savings(db.Model):

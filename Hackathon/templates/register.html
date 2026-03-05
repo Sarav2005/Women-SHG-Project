@@ -1,23 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
-    /* Modern Registration Page Styling */
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
     body {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        min-height: 100vh;
     }
 
-    /* Hide navbar and sidebar on register */
     .top-navbar, .sidebar {
         display: none !important;
     }
@@ -25,21 +16,15 @@
     .main-content {
         background: transparent !important;
         padding: 0 !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        width: 100%;
     }
 
-    .register-wrapper {
+    .register-container {
         background: white;
-        border-radius: 20px;
+        border-radius: 15px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-        max-width: 550px;
+        max-width: 600px;
         width: 95%;
-        padding: 50px 40px;
+        padding: 40px;
         animation: slideIn 0.5s ease;
     }
 
@@ -59,63 +44,20 @@
         margin-bottom: 30px;
     }
 
-    .brand-logo-reg {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: #667eea;
-        margin-bottom: 20px;
-    }
-
-    .brand-logo-reg i {
-        font-size: 1.8rem;
-    }
-
-    .register-wrapper h3 {
-        font-size: 1.9rem;
+    .register-header h2 {
+        font-size: 2rem;
         font-weight: 700;
         color: #1f2937;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
     }
 
-    .register-wrapper .subtitle {
+    .register-header p {
         color: #6b7280;
         font-size: 0.95rem;
-        margin-bottom: 25px;
     }
 
-    /* Language Switcher */
-    .lang-switcher {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        display: flex;
-        gap: 8px;
-    }
-
-    .lang-btn {
-        padding: 6px 12px;
-        border: 1px solid #e5e7eb;
-        background: white;
-        color: #667eea;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s;
-    }
-
-    .lang-btn:hover {
-        background: #f3f4f6;
-        border-color: #667eea;
-    }
-
-    /* Form Styling */
     .form-group {
-        margin-bottom: 18px;
+        margin-bottom: 20px;
     }
 
     .form-group label {
@@ -123,18 +65,16 @@
         font-weight: 600;
         color: #374151;
         margin-bottom: 8px;
-        font-size: 0.95rem;
     }
 
     .form-group input,
     .form-group textarea {
         width: 100%;
-        padding: 11px 14px;
+        padding: 12px 15px;
         border: 2px solid #e5e7eb;
-        border-radius: 10px;
+        border-radius: 8px;
         font-size: 0.95rem;
-        transition: all 0.3s ease;
-        background: #f9fafb;
+        transition: all 0.3s;
         font-family: inherit;
     }
 
@@ -142,13 +82,7 @@
     .form-group textarea:focus {
         outline: none;
         border-color: #667eea;
-        background: white;
-        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-        color: #d1d5db;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
 
     .form-row {
@@ -157,48 +91,49 @@
         gap: 15px;
     }
 
-    .form-row .form-group {
-        margin-bottom: 0;
-    }
-
-    .form-text {
-        display: block;
-        margin-top: 6px;
-        font-size: 0.85rem;
-        color: #9ca3af;
-    }
-
-    /* Error Messages */
-    .error-box {
-        background: #fee2e2;
-        color: #991b1b;
-        padding: 12px 15px;
+    .submit-btn {
+        width: 100%;
+        padding: 12px 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
         border-radius: 8px;
-        margin-bottom: 20px;
-        font-size: 0.9rem;
-        border-left: 4px solid #dc2626;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        margin-top: 10px;
     }
 
-    .error-box div {
-        margin-bottom: 5px;
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
     }
 
-    .error-box div:last-child {
-        margin-bottom: 0;
+    .login-section {
+        text-align: center;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
     }
 
-    /* Alert Messages */
+    .login-link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .login-link:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+
     .alert {
         padding: 12px 15px;
         border-radius: 8px;
         margin-bottom: 20px;
         border-left: 4px solid;
-    }
-
-    .alert-success {
-        background: #ecfdf5;
-        color: #065f46;
-        border-left-color: #10b981;
     }
 
     .alert-danger {
@@ -213,227 +148,187 @@
         border-left-color: #0ea5e9;
     }
 
-    /* Submit Section */
-    .submit-section {
-        margin-top: 25px;
-    }
-
-    .btn-register {
-        width: 100%;
-        padding: 12px 20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    }
-
-    .btn-register:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-    }
-
-    .btn-register:active {
-        transform: translateY(0);
-    }
-
-    .login-section {
-        text-align: center;
-        margin-top: 20px;
-        color: #6b7280;
-        font-size: 0.95rem;
-    }
-
-    .login-section a {
-        color: #667eea;
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.2s;
-    }
-
-    .login-section a:hover {
-        color: #764ba2;
-        text-decoration: underline;
-    }
-
-    /* Form Sections */
-    .form-section-title {
+    .error-message {
+        color: #dc2626;
         font-size: 0.85rem;
-        font-weight: 700;
-        color: #667eea;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin: 20px 0 15px 0;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #e5e7eb;
+        margin-top: 5px;
     }
 
-    .form-section-title:first-child {
-        margin-top: 0;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 600px) {
-        .register-wrapper {
-            padding: 30px 20px;
-            width: 98%;
-        }
-
-        .register-wrapper h3 {
-            font-size: 1.5rem;
-        }
-
-        .form-row {
-            grid-template-columns: 1fr;
-            gap: 0;
-        }
-
-        .form-row .form-group {
-            margin-bottom: 18px;
-        }
-
-        .brand-logo-reg {
-            font-size: 1.3rem;
-        }
-
-        .lang-switcher {
-            top: 15px;
-            right: 15px;
-        }
+    .form-info {
+        background: #f0f9ff;
+        padding: 12px 15px;
+        border-radius: 8px;
+        border-left: 4px solid #0ea5e9;
+        color: #0c4a6e;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
     }
 </style>
 
-<!-- Language Switcher -->
-<div class="lang-switcher">
-    <a href="?lang=en" class="lang-btn {% if lang == 'en' %}active{% endif %}">EN</a>
-    <a href="?lang=ta" class="lang-btn {% if lang == 'ta' %}active{% endif %}">TA</a>
-</div>
-
-<div class="register-wrapper">
-    <!-- Header Section -->
-    <div class="register-header">
-        <div class="brand-logo-reg">
-            <i class="bi bi-wallet2"></i>
-            <span>Women GateWay</span>
+<div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="register-container">
+        <div class="register-header">
+            <h2>Create Account</h2>
+            <p>Join Women GateWay Community</p>
         </div>
-        <h3>{{ t('Create Account') }}</h3>
-        <p class="subtitle">{{ t('Join our community and start managing your finances') }}</p>
-    </div>
 
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, msg in messages %}
-                <div class="alert alert-{{ 'success' if category == 'success' else 'danger' if category == 'danger' else 'info' }}">
-                    {{ msg }}
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, msg in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'danger' else 'info' }}">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="form-info">
+            ℹ️ All fields are required to complete registration
+        </div>
+
+        <form method="POST" novalidate>
+            {{ form.hidden_tag() }}
+
+            <!-- Full Name -->
+            <div class="form-group">
+                {{ form.full_name.label }}
+                {{ form.full_name(class="form-control") }}
+                {% if form.full_name.errors %}
+                    <div class="error-message">
+                        {% for error in form.full_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Email & Phone (Row) -->
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(type="email", class="form-control") }}
+                    {% if form.email.errors %}
+                        <div class="error-message">
+                            {% for error in form.email.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+                <div class="form-group">
+                    {{ form.phone.label }}
+                    {{ form.phone(class="form-control") }}
+                    {% if form.phone.errors %}
+                        <div class="error-message">
+                            {% for error in form.phone.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
 
-    <!-- Error Messages -->
-    {% if form.full_name.errors or form.email.errors or form.password.errors or form.confirm_password.errors %}
-    <div class="error-box">
-        {% for error in form.full_name.errors %}
-            <div>⚠️ {{ error }}</div>
-        {% endfor %}
-        {% for error in form.email.errors %}
-            <div>⚠️ {{ error }}</div>
-        {% endfor %}
-        {% for error in form.password.errors %}
-            <div>⚠️ {{ error }}</div>
-        {% endfor %}
-        {% for error in form.confirm_password.errors %}
-            <div>⚠️ {{ error }}</div>
-        {% endfor %}
+            <!-- Aadhaar & PAN (Row) -->
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.aadhaar_number.label }}
+                    {{ form.aadhaar_number(placeholder="12 digits", class="form-control") }}
+                    {% if form.aadhaar_number.errors %}
+                        <div class="error-message">
+                            {% for error in form.aadhaar_number.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.pan_number.label }}
+                    {{ form.pan_number(placeholder="e.g., AAAAA0000A", class="form-control") }}
+                    {% if form.pan_number.errors %}
+                        <div class="error-message">
+                            {% for error in form.pan_number.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Bank Account & IFSC (Row) -->
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.bank_account_number.label }}
+                    {{ form.bank_account_number(class="form-control") }}
+                    {% if form.bank_account_number.errors %}
+                        <div class="error-message">
+                            {% for error in form.bank_account_number.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.ifsc_code.label }}
+                    {{ form.ifsc_code(class="form-control") }}
+                    {% if form.ifsc_code.errors %}
+                        <div class="error-message">
+                            {% for error in form.ifsc_code.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                {{ form.address.label }}
+                {{ form.address(rows="3", class="form-control") }}
+                {% if form.address.errors %}
+                    <div class="error-message">
+                        {% for error in form.address.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Password & Confirm Password (Row) -->
+            <div class="form-row">
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(type="password", class="form-control") }}
+                    {% if form.password.errors %}
+                        <div class="error-message">
+                            {% for error in form.password.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password_confirm.label }}
+                    {{ form.password_confirm(type="password", class="form-control") }}
+                    {% if form.password_confirm.errors %}
+                        <div class="error-message">
+                            {% for error in form.password_confirm.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            {{ form.submit(class="submit-btn") }}
+        </form>
+
+        <div class="login-section">
+            <p style="color: #6b7280; font-size: 0.9rem;">Already have an account?</p>
+            <a href="{{ url_for('auth.login') }}" class="login-link">Sign In Here</a>
+        </div>
     </div>
-    {% endif %}
-
-    <!-- Registration Form -->
-    <form method="POST" novalidate>
-        {{ form.hidden_tag() }}
-
-        <!-- Personal Information Section -->
-        <div class="form-section-title">{{ t('Personal Information') }}</div>
-
-        <div class="form-group">
-            {{ form.full_name.label(class="form-label") }}
-            {{ form.full_name(class="form-control", placeholder=t('Full Name')) }}
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.email.label(class="form-label") }}
-                {{ form.email(class="form-control", placeholder="you@example.com") }}
-            </div>
-            <div class="form-group">
-                {{ form.phone.label(class="form-label") }}
-                {{ form.phone(class="form-control", placeholder="+91 9876543210") }}
-            </div>
-        </div>
-
-        <!-- Address Section -->
-        <div class="form-group">
-            {{ form.address.label(class="form-label") }}
-            {{ form.address(class="form-control", placeholder=t('Enter your address'), rows="2") }}
-        </div>
-
-        <!-- Document Verification Section -->
-        <div class="form-section-title">{{ t('Document Verification') }}</div>
-
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.aadhaar_number.label(class="form-label") }}
-                {{ form.aadhaar_number(class="form-control", placeholder="XXXXXXXXXXXX") }}
-            </div>
-            <div class="form-group">
-                {{ form.pan_number.label(class="form-label") }}
-                {{ form.pan_number(class="form-control", placeholder="AAAAA0000A") }}
-            </div>
-        </div>
-
-        <!-- Bank Details Section -->
-        <div class="form-section-title">{{ t('Bank Details') }}</div>
-
-        <div class="form-group">
-            {{ form.bank_account_number.label(class="form-label") }}
-            {{ form.bank_account_number(class="form-control", placeholder=t('Account Number')) }}
-        </div>
-
-        <div class="form-group">
-            {{ form.ifsc_code.label(class="form-label") }}
-            {{ form.ifsc_code(class="form-control", placeholder="SBIN0001234") }}
-        </div>
-
-        <!-- Security Section -->
-        <div class="form-section-title">{{ t('Security') }}</div>
-
-        <div class="form-row">
-            <div class="form-group">
-                {{ form.password.label(class="form-label") }}
-                {{ form.password(class="form-control", placeholder="••••••••") }}
-                <span class="form-text">{{ t('Min 6 characters') }}</span>
-            </div>
-            <div class="form-group">
-                {{ form.confirm_password.label(class="form-label") }}
-                {{ form.confirm_password(class="form-control", placeholder="••••••••") }}
-            </div>
-        </div>
-
-        <!-- Submit Section -->
-        <div class="submit-section">
-            {{ form.submit(class="btn-register", value=t('Create Account')) }}
-
-            <div class="login-section">
-                {{ t('Already have an account?') }}
-                <a href="{{ url_for('auth.login') }}">{{ t('Login here') }}</a>
-            </div>
-        </div>
-    </form>
 </div>
 
 {% endblock %}
