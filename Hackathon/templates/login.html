@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-sm login-card">
+        <div class="card-body p-4">
+            <h4 class="mb-3 text-center">{{ t('Login to SHG Platform') }}</h4>
+            <form method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label") }}
+                    {{ form.email(class="form-control", placeholder="you@example.com") }}
+                    {% for e in form.email.errors %}
+                        <div class="text-danger small">{{ e }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label(class="form-label") }}
+                    {{ form.password(class="form-control", placeholder="••••••••") }}
+                    {% for e in form.password.errors %}
+                        <div class="text-danger small">{{ e }}</div>
+                    {% endfor %}
+                </div>
+                <div class="mb-3 form-check">
+                    {{ form.remember_me(class="form-check-input") }}
+                    {{ form.remember_me.label(class="form-check-label") }}
+                </div>
+                <div class="d-grid mb-3">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+                <p class="text-center small">
+                    {{ t("Don't have an account?") }}
+                    <a href="{{ url_for('auth.register') }}">{{ t('Register') }}</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

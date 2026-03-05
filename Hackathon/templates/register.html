@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="mb-3">{{ t('Create SHG User Account') }}</h4>
+                    <form method="POST" novalidate>
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.full_name.label(class="form-label") }}
+                                {{ form.full_name(class="form-control") }}
+                                {% for e in form.full_name.errors %}
+                                <div class="text-danger small">{{ e }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.email.label(class="form-label") }}
+                                {{ form.email(class="form-control") }}
+                                {% for e in form.email.errors %}
+                                <div class="text-danger small">{{ e }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.phone.label(class="form-label") }}
+                                {{ form.phone(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.aadhaar_number.label(class="form-label") }}
+                                {{ form.aadhaar_number(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.pan_number.label(class="form-label") }}
+                                {{ form.pan_number(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.bank_account_number.label(class="form-label") }}
+                                {{ form.bank_account_number(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.ifsc_code.label(class="form-label") }}
+                                {{ form.ifsc_code(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.address.label(class="form-label") }}
+                                {{ form.address(class="form-control", rows="2") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.password.label(class="form-label") }}
+                                {{ form.password(class="form-control") }}
+                                {% for e in form.password.errors %}
+                                <div class="text-danger small">{{ e }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.confirm_password.label(class="form-label") }}
+                                {{ form.confirm_password(class="form-control") }}
+                                {% for e in form.confirm_password.errors %}
+                                <div class="text-danger small">{{ e }}</div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                        <p class="small mt-2">
+                            {{ t('Already have an account?') }}
+                            <a href="{{ url_for('auth.login') }}">{{ t('Login') }}</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

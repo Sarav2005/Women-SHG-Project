@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <h3 class="mb-3">{{ t('Grow Scheme') }}</h3>
+
+    <div class="alert alert-success">
+        {{ t('Your current credit score') }}: <strong>{{ score }}</strong>
+    </div>
+
+    <div class="row g-3">
+        {% for s in schemes %}
+        <div class="col-md-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ s.name }}</h5>
+                    <p class="mb-1"><strong>{{ t('Eligibility') }}:</strong> {{ s.eligibility }}</p>
+                    <p class="mb-0"><strong>{{ t('Benefits') }}:</strong> {{ s.benefit }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
