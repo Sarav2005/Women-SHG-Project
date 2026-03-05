@@ -198,3 +198,26 @@ def bot_ask():
         answer = "Mark your attendance for every SHG meeting to keep your credit score healthy."
 
     return jsonify({"answer": answer})
+
+@user_bp.route("/profile")
+@login_required
+def profile():
+    return render_template("profile.html")
+
+
+@user_bp.route("/update-profile", methods=["POST"])
+@login_required
+def update_profile():
+    current_user.full_name = request.form.get("full_name", current_user.full_name)
+    current_user.gender = request.form.get("gender", current_user.gender)
+    current_user.age = request.form.get("age", current_user.age)
+    current_user.address = request.form.get("address", current_user.address)
+    current_user.phone = request.form.get("phone", current_user.phone)
+    current_user.aadhaar_number = request.form.get("aadhaar_number", current_user.aadhaar_number)
+    current_user.pan_number = request.form.get("pan_number", current_user.pan_number)
+    current_user.bank_account_number = request.form.get("bank_account_number", current_user.bank_account_number)
+    current_user.ifsc_code = request.form.get("ifsc_code", current_user.ifsc_code)
+    
+    db.session.commit()
+    flash("Profile updated successfully!", "success")
+    return redirect(url_for("user.profile"))    

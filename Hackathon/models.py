@@ -21,6 +21,9 @@ class User(UserMixin, db.Model):
     address = db.Column(db.String(255))
     bank_account_number = db.Column(db.String(32))
     ifsc_code = db.Column(db.String(20))
+    gender = db.Column(db.String(20))        
+    age = db.Column(db.Integer)              
+
     join_date = db.Column(db.Date, default=date.today)
 
     savings = db.relationship("Savings", backref="user", lazy="dynamic")
